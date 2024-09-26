@@ -1,0 +1,14 @@
+# include <stdio.h>
+
+void main(){
+  int c;
+  char input[30];
+  
+  while((c = getchar()) != EOF){
+    printf("> ");
+
+    scanf("%s", &input);
+
+    printf("%s", input);
+  }
+}
