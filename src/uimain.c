@@ -1,9 +1,11 @@
 # include <stdio.h>
 # include <string.h>
 
+#define MAXSIZE 1000
+
 int main(){
-  char input[30];
-  char exitFlag[] = "exit";
+  char input[MAXSIZE];
+  char exitCase[] = "exit";
   
   printf("> ");
 
@@ -11,7 +13,7 @@ int main(){
 
   printf("%s \n", input);
   
-  while(strcmp(input, exitFlag) != 0){
+  while(strcmp(input, exitCase) != 0){
 
     printf("> ");
 
