@@ -8,6 +8,10 @@ all: tokenizer
 
 tokenizer: uimain.c
 	cc -o tokenizer uimain.c
+# run
+
+run:
+	./tokenizer
 
 # clean
 

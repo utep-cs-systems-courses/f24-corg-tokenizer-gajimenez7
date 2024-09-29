@@ -3,24 +3,43 @@
 
 #define MAXSIZE 1000
 
+int checkExit(char* arr);
 int main(){
   char input[MAXSIZE];
-  char exitCase[] = "exit";
+
+  int exitFlag = 0;
   
-  printf("> ");
-
-  scanf("%s", &input);
-
-  printf("%s \n", input);
-  
-  while(strcmp(input, exitCase) != 0){
-
+  while (exitFlag != 1){
+    
     printf("> ");
 
-    scanf("%s", &input);
+    fgets(input, MAXSIZE, stdin);
 
     printf("%s \n", input);
-  }
 
+    if(checkExit(input) == 1){
+      exitFlag = 1;
+    }
+  }
   return 0;
+}
+
+int checkExit(char* arr){
+  char *p_exit = "exit";
+  
+  int length = 0;
+
+  /* traverse until the end of each string */
+  /* check whether input is equal to "exit" */
+  while(*arr != '\0' || *p_exit != '\0'){
+    if(*arr != *p_exit){
+      if(*p_exit == '\0'){
+	break;
+      }
+      return 0;
+    }
+    arr++;
+    *p_exit++;
+  }
+  return 1;
 }
