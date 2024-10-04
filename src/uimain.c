@@ -1,5 +1,6 @@
 # include <stdio.h>
 # include <string.h>
+# include "tokenizer.h"
 
 #define MAXSIZE 1000
 
