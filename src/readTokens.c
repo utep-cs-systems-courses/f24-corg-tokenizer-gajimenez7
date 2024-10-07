@@ -39,12 +39,19 @@ int count_tokens (char *s){
 }
 
 char *copy_str(char *inStr, short len){
+  /*need to allocate memory*/
+  
   int count = 0;
   char *str = "";
   while(count < len){
     *str = *inStr;
     *str++;
     *inStr++;
+    count++;
   }
   return str;
+}
+
+char **tokenize(char *str){
+
 }
