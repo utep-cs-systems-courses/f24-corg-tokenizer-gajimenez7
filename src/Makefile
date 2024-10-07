@@ -3,11 +3,16 @@ all: tokenizer
 
 # include file dependencies
 
+readTokens.o: readTokens.c tokenizer.h
+	cc -c readTokens.c
+
+uimain.o: uimain.c tokenizer.h
+	cc -c uimain.c
 
 # prerequisites
 
-tokenizer: uimain.c
-	cc -o tokenizer uimain.c
+tokenizer: uimain.o readTokens.o
+	cc -o tokenizer uimain.o readTokens.o
 # run
 
 run:
