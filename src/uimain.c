@@ -16,7 +16,7 @@ int main(){
 
     fgets(input, MAXSIZE, stdin);
 
-    printf("%s \n", input);
+    printf("%s", input);
 
     if(checkExit(input) == 1){
       exitFlag = 1;
