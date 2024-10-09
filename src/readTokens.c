@@ -45,13 +45,17 @@ char *copy_str(char *inStr, short len){
   char *str = "";
   while(count < len){
     *str = *inStr;
-    *str++;
-    *inStr++;
+    str++;
+    inStr++;
     count++;
   }
+  str++;
+  *str = '\n';
   return str;
 }
 
+/*
 char **tokenize(char *str){
 
 }
+*/
