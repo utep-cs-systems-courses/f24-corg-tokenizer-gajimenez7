@@ -1,3 +1,4 @@
+#include <stdlib.h>
 #include "tokenizer.h"
 
 int space_char(char c){
@@ -14,9 +15,9 @@ int non_space_char(char c){
   return 0;
 }
 
-char *token_start(char *s){
-  if(non_space_char(*s)){
-      return s;
+char *token_start(char *str){
+  if(non_space_char(*str)){
+      return str;
   }
   else{
      return 0;
@@ -24,7 +25,7 @@ char *token_start(char *s){
 }
 
 char *token_terminator(char *token){
-  if(space_char(*token)){
+  if(*token_start(token) == 0){
     return token;
   }
 }
@@ -40,9 +41,10 @@ int count_tokens (char *s){
 
 char *copy_str(char *inStr, short len){
   /*need to allocate memory*/
+  char *p = malloc(len+1);
+  char *str = p;
   
   int count = 0;
-  char *str = "";
   while(count < len){
     *str = *inStr;
     str++;
