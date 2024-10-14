@@ -18,23 +18,12 @@ int main(){
 
     printf("%s", input);
 
-    /* test space_char method */
-    printf("%d \n", space_char(input[0]));
-
-    /* test non_space_char method */
-    printf("%d \n", non_space_char(input[0]));
-
-    /* test token_start method */
-    printf("%c \n", *token_start(input));
-
-    /* test token_terminator method */
-    while(*input != '\0'){
-      printf("%c \n", *token_terminator(input));
-    }
-    
     if(checkExit(input) == 1){
       exitFlag = 1;
     }
+
+    /* test tokenizer */
+    **tokenize(input);
   }
   return 0;
 }
