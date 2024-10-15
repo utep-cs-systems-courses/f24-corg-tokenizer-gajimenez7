@@ -8,6 +8,8 @@ int checkExit(char* arr);
 int main(){
   char input[MAXSIZE];
 
+  char **tokens = NULL;
+  
   int exitFlag = 0;
   
   while (exitFlag != 1){
@@ -23,7 +25,8 @@ int main(){
     }
 
     /* test tokenizer */
-    **tokenize(input);
+    tokens = tokenize(input);
+    print_tokens(tokens);
   }
   return 0;
 }
