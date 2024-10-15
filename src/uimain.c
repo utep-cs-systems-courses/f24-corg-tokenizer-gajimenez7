@@ -1,34 +1,59 @@
 # include <stdio.h>
 # include <string.h>
 # include "tokenizer.h"
+# include "history.h"
 
 #define MAXSIZE 1000
 
 int checkExit(char* arr);
+int checkHistory(char *arr);
 int main(){
   char input[MAXSIZE];
 
   char **tokens = NULL;
   
   int exitFlag = 0;
-  
+  int historyFlag = 0;
+
+  List *list = init_history();
   while (exitFlag != 1){
     
     printf("> ");
 
     fgets(input, MAXSIZE, stdin);
 
-    printf("%s", input);
-
+    add_history(list, input);
+    
     if(checkExit(input) == 1){
       exitFlag = 1;
+      break;
     }
-
-    /* test tokenizer */
-    tokens = tokenize(input);
-    print_tokens(tokens);
+    if(checkHistory(input) == 1){
+      print_history(list);
+    }else{
+      /* test tokenizer */
+      tokens = tokenize(input);
+      print_tokens(tokens);
+    }
   }
   return 0;
+}
+
+int checkHistory(char *arr){
+  char *p_history = "history";
+  int length = 0;
+
+  while(*arr != '\0' || *p_history != '\0'){
+    if(*arr != *p_history){
+      if(*p_history == '\0'){
+	break;
+      }
+      return 0;
+    }
+    arr++;
+    *p_history++;
+  }
+  return 1;
 }
 
 int checkExit(char* arr){
