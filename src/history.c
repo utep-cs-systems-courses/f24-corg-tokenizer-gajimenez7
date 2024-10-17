@@ -34,7 +34,7 @@ void add_history(List *list, char *str){
 
 char *get_history(List *list, int id){
   Item *temp = list->root;
-
+  
   while(temp != 0){
     if(temp->id == id){
       return temp->str;
@@ -47,7 +47,7 @@ char *get_history(List *list, int id){
 void print_history(List *list){
   Item *temp = list->root->next;
   while(temp !=0){
-    printf("%d . %s\n", temp->id, temp->str);
+    printf("%d. %s", temp->id, temp->str);
     temp = temp->next;
   }
 }

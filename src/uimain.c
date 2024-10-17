@@ -14,7 +14,7 @@ int main(){
   
   int exitFlag = 0;
   int historyFlag = 0;
-
+  
   List *list = init_history();
   while (exitFlag != 1){
     
@@ -30,7 +30,11 @@ int main(){
     }
     if(checkHistory(input) == 1){
       print_history(list);
-    }else{
+    }
+    if(checkHistory(input) > 1){
+      printf("%s", get_history(list,checkHistory(input)-'0'));
+    }
+    else{
       /* test tokenizer */
       tokens = tokenize(input);
       print_tokens(tokens);
@@ -41,17 +45,26 @@ int main(){
 
 int checkHistory(char *arr){
   char *p_history = "history";
-  int length = 0;
-
-  while(*arr != '\0' || *p_history != '\0'){
+  int length = 7;
+  int i = 1;
+  
+  while(*arr != '\0'){
+    if(*(arr+2) >= 48 && *(arr+2) <= 57){
+      return *(arr+2);
+    }
     if(*arr != *p_history){
-      if(*p_history == '\0'){
-	break;
-      }
       return 0;
     }
+    if(i > length){
+      return 0;
+    }
+    if(i == length && *(arr++) == ' ' && *(arr++) != '\0'){
+      break;
+    }
+
     arr++;
     *p_history++;
+    i++;
   }
   return 1;
 }
@@ -59,19 +72,24 @@ int checkHistory(char *arr){
 int checkExit(char* arr){
   char *p_exit = "exit";
   
-  int length = 0;
+  int length = 4;
+  int i = 1;
 
   /* traverse until the end of each string */
   /* check whether input is equal to "exit" */
-  while(*arr != '\0' || *p_exit != '\0'){
+  while(*arr != '\0'){
     if(*arr != *p_exit){
-      if(*p_exit == '\0'){
-	break;
-      }
       return 0;
     }
+    if(i > length){
+      return 0;
+    }
+    if(i == length && *(arr++) == ' ' && *(arr++) != '\0'){
+      break;
+    }
     arr++;
-    *p_exit++;
+    p_exit++;
+    i++;
   }
   return 1;
 }
